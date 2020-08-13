@@ -13,41 +13,53 @@
 <div class="container mt-5">
 
     <form action="converter" method="post">
-        <div class="form-group row">
-            <label class="text-primary mb-2 col-sm-2 col-form-label">Конвертировать из: </label>
-            <select class="form-control mb-2 col-sm-6" name="baseCurrency">
-                <option th:each="currency : ${currencies}"
-                        th:text="${currency.name}"
-                        th:value="${currency.id}"
-                        th:selected="${selectedBaseCurrency?.id == currency?.id}">
-
-                </option>
-            </select>
-        </div>
 
         <div class="form-group row">
-            <label class="text-primary mb-2 col-sm-2 col-form-label">Конвертировать В: </label>
-            <select class="form-control mb-2 col-sm-6" name="conversionCurrency">
-                <option th:each="currency : ${currencies}"
-                        th:text="${currency.name}"
-                        th:value="${currency.id}"
-                        th:selected="${selectedConversionCurrency?.id == currency?.id}">
 
-                </option>
-            </select>
-        </div>
-        <div class="form-group row">
-            <label class="text-primary mb-2">Сумма: <input name="amount" type="text"/></label>
-
-            <div class="ml-3" th:if="${exchangeResultAmount != null}">
-                <label class="text-primary mb-2">Сумма после конвертации:</label>
-                <label class="text-danger ml-2"
-                       th:text="${exchangeResultAmount} + ' (' + ${charCodeResult} + ')' "></label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Конвертировать из:</span>
+                </div>
+                <select class=" form-control col-sm-4 " name="baseCurrency">
+                    <option th:each="currency : ${currencies}"
+                            th:text="${currency.name}"
+                            th:value="${currency.id}"
+                            th:selected="${selectedBaseCurrency?.id == currency?.id}">
+                    </option>
+                </select>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <button class="btn btn btn-primary" type="submit">Конвертировать</button>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Конвертировать в:</span>
+                </div>
+                <select class=" form-control col-sm-4 " name="conversionCurrency">
+                    <option th:each="currency : ${currencies}"
+                            th:text="${currency.name}"
+                            th:value="${currency.id}"
+                            th:selected="${selectedConversionCurrency?.id == currency?.id}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <input name="amount" type="text" placeholder="Ведите сумму..." class="form-control col-sm-3"/>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Конвертировать</button>
+                </div>
+            </div>
+
+            <div class="input-group mb-3" th:if="${exchangeResultAmount != null}">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-primary">Сумма после конвертации:</span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-danger"
+                          th:text="${exchangeResultAmount} + ' (' + ${charCodeResult} + ')' "></span>
+                </div>
+
+            </div>
+
         </div>
 
     </form>

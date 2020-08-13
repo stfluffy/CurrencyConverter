@@ -30,17 +30,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addUser(User user) {
-        Optional<User> getUser = userRepo.findByUsername(user.getUsername());
+    public boolean addUser(UserDto userDto) {
+        Optional<User> getUser = userRepo.findByUsername(userDto.getUsername());
 
         if (getUser.isPresent()) {
             return false;
         }
 
-        user.setRoles(Collections.singleton(Role.USER));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepo.save(user);
+        userDto.setRoles(Collections.singleton(Role.USER));
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userRepo.save(convertToModel(userDto));
         return true;
+    }
+
+
+    private User convertToModel(UserDto userDto) {
+        return modelMapper.map(userDto, User.class);
     }
 
     private UserDto convertToDTO(User user) {

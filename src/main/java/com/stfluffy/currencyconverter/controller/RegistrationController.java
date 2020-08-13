@@ -1,6 +1,6 @@
 package com.stfluffy.currencyconverter.controller;
 
-import com.stfluffy.currencyconverter.model.User;
+import com.stfluffy.currencyconverter.dto.UserDto;
 import com.stfluffy.currencyconverter.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +24,15 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User getUser, Model model) {
+    public String addUser(UserDto getUser, Model model) {
+
+        if (getUser.getUsername().isEmpty() && getUser.getPassword().isEmpty()) {
+            model.addAttribute("regError", "er");
+            return "registration";
+        }
+
         if (!service.addUser(getUser)) {
-            model.addAttribute("error", "Пользователь существует!");
+            model.addAttribute("userError", "er");
             return "registration";
         }
 
