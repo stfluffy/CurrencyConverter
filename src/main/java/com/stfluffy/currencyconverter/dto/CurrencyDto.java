@@ -2,6 +2,7 @@ package com.stfluffy.currencyconverter.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 @Getter
@@ -16,6 +17,7 @@ public class CurrencyDto {
     private String charCode;
     private int denomination;
     private String name;
+    @Pattern(regexp = "(?<=^| )\\d+(\\.\\d+)?(?=$| )")
     private BigDecimal value;
 
 }

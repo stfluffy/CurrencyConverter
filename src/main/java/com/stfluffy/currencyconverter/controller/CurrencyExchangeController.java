@@ -25,7 +25,7 @@ public class CurrencyExchangeController {
         return "converter";
     }
 
-    @PostMapping("/converter")
+    @PostMapping("/converter") //TODO: Сделать валидацию.
     public String test(@RequestParam(value = "baseCurrency") long idBaseCurrency,
                        @RequestParam(value = "conversionCurrency") long idConversionCurrency,
                        @RequestParam(value = "amount") String amount,
