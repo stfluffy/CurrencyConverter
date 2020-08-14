@@ -23,8 +23,8 @@ Currency converter is a web service for converting currencies and getting the cu
 3. Install or run maven to picking up dependencies,
 4. Create and connect to the database. Сonnection parameters:
 			 
-	    url: jdbc:postgresql://localhost:5432/onlinechat  
-		name: onlinechat  
+	    url: jdbc:postgresql://localhost:5432/CurrencyConverter  
+		name: CurrencyConverter 
 		port: 5432  
 		username: jack  
 		password: 
