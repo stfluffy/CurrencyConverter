@@ -1,6 +1,7 @@
 package com.stfluffy.currencyconverter.controller;
 
 import com.stfluffy.currencyconverter.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,18 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
+@AllArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String listUsers(Model model) {
         model.addAttribute("listUsers", userService.findAll());
         return "users";
     }
+
+
 }

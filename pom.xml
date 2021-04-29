@@ -15,7 +15,7 @@
     <description>Currency Converter</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <modelmapper.version>2.3.5</modelmapper.version>
         <javax.activation.api.version>1.2.0</javax.activation.api.version>
         <glassfish.jaxb.runtime.version>2.3.1</glassfish.jaxb.runtime.version>
